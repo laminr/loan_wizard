@@ -1,0 +1,26 @@
+.row-no-padding {
+  [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.text-large {
+  font-size: @text-size-large;
+}
+
+.btn-default {
+  color: white;
+
+  background-image: -webkit-linear-gradient(top,@color-blue 0, darken(@color-blue, 10%), 100%);
+  background-image:      -o-linear-gradient(top,@color-blue 0, darken(@color-blue, 10%) 100%);
+  background-image:        -webkit-gradient(linear,left top,left bottom,from(@color-blue),to(darken(@color-blue, 10%)));
+  background-image:         linear-gradient(to bottom,@color-blue 0, darken(@color-blue, 10%) 100%);
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+
+  background-repeat: repeat-x;
+  border-color: darken(@color-blue, 5%);
+
+}

@@ -1,0 +1,52 @@
+@import "../../variables";
+
+.payments {
+
+        overflow: scroll;
+      overflow-y: hidden;
+  -ms-overflow-y: hidden;
+
+  white-space: nowrap;
+  height: 140px;
+
+  .payments__line-above::before {
+    border-top: 1px solid #c5c5c5;
+    position: relative;
+    top: 0;
+    left: 10px;
+    width: 90%;
+  }
+
+  .payments__period {
+
+    text-align: center;
+
+  }
+  .payments__onePayment {
+    font-size: 0.8em;
+    position: relative;
+    display: inline-block;
+    border: 1px solid @border-light-grey;
+    padding: 5px 10px;
+    width: 130px;
+    margin-left: 5px;
+
+  }
+
+}
+
+.color-total {
+ color: @color-total;
+}
+
+.color-capital {
+  color: @color-capital;
+}
+
+.color-interest {
+  color: @color-interest;
+}
+
+.color-payment {
+  color: @color-payment;
+}

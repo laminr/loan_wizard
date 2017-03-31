@@ -1,0 +1,179 @@
+<div class="loanPlan">
+    <div class="row">
+        <div class="loan__form animated" ng-class="{ 'fadeIn' : ctrl.showForm, 'fadeOut hidden' : !ctrl.showForm }">
+            <div>
+                <div class="form-group">
+                    <label>D&eacute;but</label>
+                    <input datepicker
+                           ng-model="ctrl.startingAt"
+                           select="ctrl.updateStartingAt(date)"
+                           type="text"
+                           class="form-control"
+                           id="startAt"
+                           placeholder="Date de d&eacute;but">
+                </div>
+                <div class="form-group">
+                    <label>Emprunt</label>
+                    <input type="text" class="form-control" id="capital" ng-model="ctrl.loan.borrowed">
+                </div>
+                <div class="form-group">
+                    <label>P&eacute;riode</label>
+                    <input type="number" class="form-control" id="period" ng-model="ctrl.loan.period"
+                           placeholder="Mois">
+                </div>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label>Taux</label>
+                    <input type="text" class="form-control" id="rate" ng-model="ctrl.loan.rate" placeholder="Annuel">
+                </div>
+                <div class="form-group">
+                    <label>Assurance</label>
+                    <input type="number" step="0.10" class="form-control" ng-model="ctrl.loan.insurance">
+                </div>
+                <div class="form-group">
+                    <label>D&eacute;cal&eacute;</label>
+                    <input type="number" step="1" class="form-control" ng-model="ctrl.loan.shift" placeholder="Mois">
+                </div>
+            </div>
+
+            <div class="loan__form-submit">
+                <button class="btn btn-default" type="button"
+                        ng-click="ctrl.getLoan()" ng-hide="ctrl.loading">Submit
+                </button>
+                <div class="loader" ng-show="ctrl.loading">
+                    <div class="loader-inner ball-clip-rotate-multiple">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="loan__data animated" ng-class="{ 'fadeIn' : !ctrl.showForm, 'fadeOut' : ctrl.showForm }">
+
+            <button class="pull-right btn btn-xs edit" ng-click="ctrl.showForm = !ctrl.showForm">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </button>
+            <div class="col-sm-6">
+                <table>
+                    <thead></thead>
+                    <tbody>
+                    <tr>
+                        <td>D&eacute;but</td>
+                        <td>{{ ctrl.startingAt }}</td>
+                    </tr>
+                    <tr>
+                        <td>Emprunt</td>
+                        <td>
+                            <span class="form-value">{{ ctrl.loan.borrowed }}</span> &euro;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>P&eacute;riode</td>
+                        <td>
+                            <span class="form-value">{{ ctrl.loan.period }}</span> mois
+                            <div class="info">
+                                {{ ctrl.loan.period / 12 | number: 1}} &percnt; ann&eacute;es
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taux</td>
+                        <td>
+                            <span class="form-value">{{ ctrl.loan.rate }}</span> &percnt;
+                            <div class="info">
+                                {{ ctrl.loan.rate * 12 | number: 2}} &percnt; annuel
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Assurance</td>
+                        <td>
+                            <span class="form-value">{{ ctrl.loan.insurance }}</span> &euro;
+                        </td>
+                    </tr>
+                    <tr ng-show="ctrl.loan.shift > 0">
+                        <td>D&eacute;cal&eacute;</td>
+                        <td>
+                            <span class="form-value">{{ ctrl.loan.shift }}</span> mois
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="subloan__widget">
+                    <sub-loan data="{capital: 5000, rate: 2.1, period: 18, startingAt: 10, insurance: 10 }"></sub-loan>
+                </div>
+            </div>
+            <div class="col-sm-6 loan__results">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>Payement</td>
+                        <td>
+                            <div ng-show="ctrl.loan.payment > 0">
+                                <div class="text-right">
+                                    <span class="text-large">{{ ctrl.loan.payment + ctrl.loan.insurance | number : 2 }}</span> &euro;
+                                </div>
+                                <div class="info">
+                                    <div class="text-right">
+                                        [{{ ctrl.loan.payment }} + {{ ctrl.loan.insurance }}]
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Co&ucirc;t total</td>
+                        <td class="text-right">
+                            <span class="text-large">{{ ctrl.loan.totalCost | number : 2 }}</span> &euro;
+                            <div class="text-right">
+                                {{ ctrl.loan.totalCost - ctrl.loan.borrowed | number : 2 }} &euro; /
+                      <span>
+                          {{ ((ctrl.loan.totalCost / ctrl.loan.borrowed) -1) * 100 | number : 2 }} &percnt;
+                      </span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="pull-right">
+                    <button class="btn btn-default btn-xs"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#loan__chart_{{ ctrl.id }}"
+                        aria-expanded="false"
+                        aria-controls="loan__chart_{{ ctrl.id }}">
+                        <i class="glyphicon glyphicon-stats"></i>
+                        Graphique
+                    </button>
+                    <button class="btn btn-default btn-xs"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#loan__payments_{{ ctrl.id }}"
+                            aria-expanded="false"
+                            aria-controls="loan__payments_{{ ctrl.id }}">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        Payements
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="loan__payments row">
+            <div class="col-sm-12 collapse" id="loan__payments_{{ ctrl.id }}">
+                <ebiz-payments payments="ctrl.loan.payments" starting-at="ctrl.startingAt"></ebiz-payments>
+            </div>
+        </div>
+
+        <div class="row _loan__charts">
+            <div class="col-sm-12 __collapse"  id="loan__chart_{{ ctrl.id }}">
+                <ebiz-loan-charts width="800" height="300" payments="ctrl.loan.payments"></ebiz-loan-charts>
+            </div>
+        </div>
+
+    </div>
+</div>

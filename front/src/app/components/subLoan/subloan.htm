@@ -1,0 +1,37 @@
+<div class="subloan__directive">
+    <div class="subloan__form">
+        <div class="subloan__form-amount">
+            <label>Montant</label>
+            <input type="text" ng-model="ctrl.subloan.capital" ng-hide="ctrl.validated" class="form-control"/>
+            <div ng-show="ctrl.validated" ng-bind="ctrl.subloan.capital"></div>
+        </div>
+        <div class="subloan__form-rate">
+            <label>Taux</label>
+            <input type="text" ng-model="ctrl.subloan.rate" ng-hide="ctrl.validated" class="form-control"/>
+            <div ng-show="ctrl.validated">{{ ctrl.subloan.rate }} &percnt;</div>
+        </div>
+        <div class="subloan__form-period">
+            <label>P&eacute;r.</label>
+            <input type="text" ng-model="ctrl.subloan.period" ng-hide="ctrl.validated" class="form-control"/>
+            <div ng-show="ctrl.validated">{{ ctrl.subloan.period }} m.</div>
+        </div>
+        <div class="subloan__form-start">
+            <label>D&eacute;but</label>
+            <input type="text" ng-model="ctrl.subloan.startingAt" ng-hide="ctrl.validated" class="form-control"/>
+            <div ng-show="ctrl.validated" ng-bind="ctrl.subloan.startingAt"></div>
+        </div>
+        <div class="subloan__form-insurance">
+            <label>Assur.</label>
+            <input type="text" ng-model="ctrl.subloan.insurance" ng-hide="ctrl.validated" class="form-control"/>
+            <div ng-show="ctrl.validated"> {{ctrl.subloan.insurance}} &euro;</div>
+        </div>
+        <div class="subloan__control">
+            <button ng-click="ctrl.validated = !ctrl.validated" class="btn btn-xs">
+                <span ng-hide="ctrl.validated">+</span>
+            <span ng-show="ctrl.validated">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </span>
+            </button>
+        </div>
+    </div>
+</div>

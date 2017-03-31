@@ -1,0 +1,124 @@
+.loanPlan {
+
+  .form-value {
+    font-size: 1.5em;
+  }
+
+  .loan__form {
+
+    width: 320px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid lighten(@color-default, 20%);
+    box-shadow: 1px 1px 1px #fff;
+    margin: 0 auto;
+
+    div.form-group {
+      display: inline-block;
+    }
+
+    [datepicker], input[ng-model="ctrl.loan.rate"] {
+      width: 100px;
+    }
+
+    input[ng-model="ctrl.loan.borrowed"], input[ng-model="ctrl.loan.insurance"] {
+      width: 110px;
+    }
+
+    input[ng-model="ctrl.loan.shift"], input[ng-model="ctrl.loan.period"] {
+      width: 70px;
+    }
+
+    label {
+      font-weight: normal;
+      font-size: 0.9em;
+    }
+  }
+
+  .loan-form {
+    padding: 2px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 0px 10px;
+
+    button {
+      margin-top: 25px;
+    }
+  }
+
+  .monthRate {
+    line-height: 1em;
+    margin-top: 12px;
+  }
+
+  .info {
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+
+  .loan__payments {
+    margin-top: 20px;
+  }
+
+  .loan__data {
+
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    padding: 20px 0;
+
+    &::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    & > div[class*="col-"] {
+
+      & > table {
+        width: 100%;
+        & tr {
+          td {
+            width: 50%;
+            border-bottom: 1px solid rgb(221, 221, 221);
+            & + td {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+
+    & button.edit {
+      margin-top: -10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.subloan__widget {
+  margin-top: 10px;
+}
+
+.ball-clip-rotate-multiple {
+  & > div {
+    border: 2px solid @color-blue;
+
+    &:last-child {
+      border-color: @color-blue transparent @color-blue transparent;
+    }
+  }
+}
+
+.loan__form-submit {
+  label {
+    display: block;
+  }
+}
+
+button.btn + button.btn {
+  margin-left: 10px;
+}

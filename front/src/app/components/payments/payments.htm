@@ -1,0 +1,29 @@
+<div class="payments">
+  <div ng-repeat="payment in ctrl.payments" class="payments__onePayment">
+    <div class="payments__period">[{{payment.period}}] {{ ctrl.dateAt(payment.period) }}</div>
+    <div class="row">
+      <div class="col-sm-6">Emprunt</div>
+      <div class="col-sm-6 text-right">{{ payment.borrowed | number : 2}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">Payement</div>
+      <div class="col-sm-6 text-right color-payment">{{ payment.basePayment | number : 2}}</div>
+    </div>
+    <div class="row payments__line-above">
+      <div class="col-sm-6">Capital</div>
+      <div class="col-sm-6 text-right color-capital">{{ payment.capital | number : 2 }}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">Int&eacute;r&ecirc;t</div>
+      <div class="col-sm-6 text-right color-interest">{{ payment.interest  | number : 2}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">Assurance</div>
+      <div class="col-sm-6 text-right">{{ payment.insurance  | number : 2}}</div>
+    </div>
+    <div class="row payments__line-above">
+      <div class="col-sm-6">Total</div>
+      <div class="col-sm-6 text-right color-total">{{ payment.fullPayment | number : 2}}</div>
+    </div>
+  </div>
+</div>
